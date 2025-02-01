@@ -7,10 +7,10 @@
                     <v-menu activator="parent">
                         <v-list>
                             <v-list-item value="ver">
-                                <v-list-item-title>Ver</v-list-item-title>
+                                <v-list-item-title class="flex items-center gap-2"><IconEye />Ver</v-list-item-title>
                             </v-list-item>
                             <v-list-item value="ver">
-                                <v-list-item-title>Eliminar</v-list-item-title>
+                                <v-list-item-title class="flex items-center gap-2"><IconTrash />Eliminar</v-list-item-title>
                             </v-list-item>
                         </v-list>
                     </v-menu>
@@ -21,7 +21,7 @@
 </template>
 <script lang="ts" setup>
 import { defineProps } from 'vue';
-import { IconDots } from '@tabler/icons-vue';
+import { IconDots, IconTrash, IconEye } from '@tabler/icons-vue';
 import type { User } from '~/types/user';
 
 const usersTableHeaders = [
