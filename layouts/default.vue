@@ -3,7 +3,7 @@
         <Navbar />
         <div class="flex h-screen">
             <Sidebar />
-            <div class="p-4 w-full scroll-auto rounded-tl-xl bg-[#f8f9fa]">
+            <div class="p-4 w-full overflow-auto rounded-tl-xl bg-[#f8f9fa]">
                 <slot />
             </div>
         </div>
