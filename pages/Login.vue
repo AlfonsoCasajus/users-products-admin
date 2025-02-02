@@ -27,15 +27,16 @@
             </form>
         </div>
         <div class="hidden sm:flex flex-col items-center justify-center gap-4 w-full bg-[#ffffff] rounded-xl text-center shadow-lg p-4!">
-            <h1 class="text-5xl">Inicia Sesion</h1>
+            <h1 class="text-5xl">Inicia Sesión</h1>
             <p class="max-w-2/3 text-xl">
-                Para administrar tus usuarios y productos deberas primero, ingresar a la plataforma con tu nombre de usuario y contraseña</p>
+                Para administrar tus usuarios y productos, deberás primero ingresar a la plataforma con tu nombre de usuario y contraseña.
+            </p>
+            <NuxtImg src="loginBg.jpg" alt="Background" width="400" height="400" format="webp" quality="80" class="hidden md:inline" />
             <small class="font-bold">Usuario: Daptee, Contraseña: Daptee2025</small>
-            <v-btn variant="tonal" color="info" size="small" rounded="xl" @click="fillCredentials">
+            <v-btn variant="tonal" size="small" rounded="xl" @click="fillCredentials">
                 <IconPencil size="24" />
                 Pegar credenciales
             </v-btn>
-            <NuxtImg src="loginBg.jpg" alt="Background" width="400" height="400" format="webp" quality="80" class="hidden md:inline" />
         </div>
     </section>
 </template>
