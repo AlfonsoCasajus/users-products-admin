@@ -1,17 +1,20 @@
 <template>
-    <section class="flex flex-col gap-4 items-center">
-        <h1>Usuarios</h1>
-        <div class="flex flex-col gap-3">
-            <UsersTable :users="filteredUsers" @delete="deleteUser"/>
-        </div>
-    </section>
+    <div class="flex flex-col gap-4 items-center">
+        <UsersTable v-if="!isLoadingUsers" :users="filteredUsers" @delete="deleteUser"/>
+        <v-progress-circular
+            v-else
+            :size="75"
+            color="primary"
+            indeterminate
+        />
+    </div>
 </template>
 
 <script setup lang="ts">
 import { useUsers } from '~/composables/useUsers';
 
 // Fetch user data
-const { users, fetchUsers, deleteUser } = useUsers();
+const { users, fetchUsers, deleteUser, isLoadingUsers } = useUsers();
 
 onMounted(async () => {
     await fetchUsers()
