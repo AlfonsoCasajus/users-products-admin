@@ -1,41 +1,47 @@
 <template>
-    <section class="h-full flex">
-        <span class="w-full flex items-center justify-center bg-[#1A202C]">
-            <form @submit.prevent="login" class="max-w-md mx-auto mt-10 p-6 rounded-lg text-[#f8f9fa]">
-                <div class="mb-4">
-                    <label for="username" class="block text-sm font-medium">Usuario</label>
-                    <input
-                        type="text"
-                        id="username"
-                        v-model="username"
-                        placeholder="Me llamo..."
-                        required
-                        class="mt-1 block w-full bg-transparent border-b border-gray-600 focus:border-gray-400 text-white placeholder-gray-400 outline-none py-2"
-                    />
-                </div>
-                <div class="mb-6">
-                    <label for="password" class="block text-sm font-medium">Contraseña</label>
-                    <input
-                        type="password"
-                        id="password"
-                        v-model="password"
-                        placeholder="••••••••"
-                        required
-                        class="mt-1 block w-full bg-transparent border-b border-gray-600 focus:border-gray-400 text-white placeholder-gray-400 outline-none py-2"
-                    />
-                </div>
+    <section class="h-full flex gap-5 bg-[#1A202C] p-12!">
+        <div class="w-full flex flex-col gap-3 items-center justify-center">
+            <NuxtImg src="logoDaptee.svg" alt="Logo" height="100" format="webp" quality="80" />
+            
+            <form @submit.prevent="login" class="text-[#f8f9fa] w-full max-w-[500px] flex flex-col gap-3 p-6">
+                <v-text-field
+                    v-model="username"
+                    clearable
+                    label="Usuario"
+                    placeholder="Ej: Daptee"
+                    :prepend-icon="IconUser"
+                    hint="Daptee"
+                />
+                <v-text-field
+                    v-model="password"
+                    :append-inner-icon="isPasswordVisible ? IconEye : IconEyeClosed"
+                    :prepend-icon="IconLock"
+                    :type="isPasswordVisible ? 'text' : 'password'"
+                    hint="Daptee2025"
+                    label="Contraseña"
+                    @click:append-inner="isPasswordVisible = !isPasswordVisible"
+                />
                 <v-btn type="submit" variant="tonal" color="info" rounded="xl">
                     Ingresar
                 </v-btn>
             </form>
-            
-        </span>
-        <span class="w-full bg-[url(public/bgTexture.jpg')] bg-center bg-repeat" />
+        </div>
+        <div class="hidden sm:flex flex-col items-center justify-center gap-4 w-full bg-[#ffffff] rounded-xl text-center shadow-lg p-4!">
+            <h1 class="text-5xl">Inicia Sesion</h1>
+            <p class="max-w-2/3 text-xl">
+                Para administrar tus usuarios y productos deberas primero, ingresar a la plataforma con tu nombre de usuario y contraseña</p>
+            <small class="font-bold">Usuario: Daptee, Contraseña: Daptee2025</small>
+            <v-btn variant="tonal" color="info" size="small" rounded="xl" @click="fillCredentials">
+                <IconPencil size="24" />
+                Pegar credenciales
+            </v-btn>
+            <NuxtImg src="loginBg.jpg" alt="Background" width="400" height="400" format="webp" quality="80" class="hidden md:inline" />
+        </div>
     </section>
 </template>
 
 <script setup lang="ts">
-
+import { IconUser, IconEye, IconEyeClosed, IconLock, IconPencil } from '@tabler/icons-vue';
 import { useAuth } from '~/composables/useAuth';
 
 definePageMeta({
@@ -44,10 +50,16 @@ definePageMeta({
 
 const username = ref('');
 const password = ref('');
+const isPasswordVisible = ref(false);
 
 const auth = useAuth()
 
 const login = () => {
     auth.logIn(username.value, password.value);
+};
+
+const fillCredentials = () => {
+    username.value = 'Daptee';
+    password.value = 'Daptee2025';
 };
 </script>

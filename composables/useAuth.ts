@@ -1,5 +1,4 @@
 import { useAuthStore } from "@/stores/authStore";
-import { useRouter } from 'vue-router';
 export const useAuth = () => {
     const router = useRouter();
     const authStore = useAuthStore()
