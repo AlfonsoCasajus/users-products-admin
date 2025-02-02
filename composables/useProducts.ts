@@ -6,7 +6,6 @@ export const useProducts = () => {
 
     const fetchProducts = async () => {
       try {
-        console.log('Fetching products...');
         const productsResponse = await $fetch('https://fakestoreapi.com/products')
 
         const productsList = productsResponse as Product[];
@@ -16,9 +15,16 @@ export const useProducts = () => {
         console.error('Error fetching products: ', error);
       }
     };
+
+        // Eliminar un producto
+        const deleteProduct = async (productId: number) => {
+          products.value = products.value.filter((product) => product.id !== productId);
+      };
+  
   
     return {
       fetchProducts,
+      deleteProduct,
       isLoadingProducts,
       products
     };

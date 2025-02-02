@@ -10,10 +10,10 @@
             </tr>
             </thead>
             <tbody class="bg-[#212529] text-[#f8f9fa]">
-                <tr v-for="(item, index) in users" :key="index" class="table-row hover:bg-[#30373d6e]">
-                    <td class="px-6 py-4 whitespace-nowrap">{{ item.name }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ item.username }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ item.email }}</td>
+                <tr v-for="(item, index) in products" :key="index" class="table-row hover:bg-[#30373d6e]">
+                    <td class="px-6 py-4 whitespace-nowrap">{{ item.title }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ item.category }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">${{ item.price }}</td>
                     <td class="px-6 py-4">
                         <v-btn :icon="IconDots" variant="tonal" size="small" rounded="xl">
                             <IconDots size="24" />
@@ -37,12 +37,12 @@
 <script lang="ts" setup>
 import { defineProps } from 'vue';
 import { IconDots, IconTrash, IconEye } from '@tabler/icons-vue';
-import type { User } from '~/types/user';
+import type { Product } from '~/types/product';
 import { gsap } from "gsap";
 
 defineProps({
-    users: {
-        type: Array as () => User[],
+    products: {
+        type: Array as () => Product[],
         required: true
     }
 });

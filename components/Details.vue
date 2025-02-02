@@ -30,7 +30,7 @@ import { IconUser } from '@tabler/icons-vue';
 interface Detail {
     icon: string;
     text: string;
-    value: string;
+    value: string | number;
 }
 
 const props = defineProps({
