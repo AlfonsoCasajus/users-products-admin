@@ -5,24 +5,29 @@ export const useUsers = () => {
 
     const isLoadingUsers = ref(false);
   
+    // Buscar a los usuarios
     const fetchUsers = async () => {
       isLoadingUsers.value = true;
       try {
-        console.log('Fetching users...');
-        const userResponse = await $fetch('https://jsonplaceholder.typicode.com/users');
-
-        const usersList = userResponse as User[];
-        users.value = usersList;
-
+         const userResponse = await $fetch('https://jsonplaceholder.typicode.com/users');
+         const usersList = userResponse as User[];
+         users.value = usersList;
       } catch (error) {
         console.error('Error fetching users: ', error);
       }
       isLoadingUsers.value = false;
     };
+
+    // Eliminar un usuario
+    const deleteUser = async (userId: number) => {
+        users.value = users.value.filter((user) => user.id !== userId);
+    };
+
   
     return {
       users,
-      fetchUsers,
       isLoadingUsers,
+      fetchUsers,
+      deleteUser,
     };
   };
