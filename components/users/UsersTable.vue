@@ -1,6 +1,6 @@
 <template>
     <div class="overflow-hidden w-full">
-        <table  class="w-full">
+        <table class="w-full">
             <thead class="bg-[#2e3338c2] text-white">
             <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Nombre</th>
@@ -62,13 +62,13 @@ defineEmits(['delete', 'details']);
 
 // Transitions and animations
 onMounted(() => {
-    gsap.from('.table-row', {
-        scale: 0.8,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 1,
-        ease: "back.out(1.7)",
-    });
+  gsap.from(['table', '.table-row'], {
+    y: 10,
+    opacity: 0,
+    stagger: 0.08,
+    duration: 0.6,
+    ease: "ease.out",
+  });
 });
 
 const { onBeforeEnter, onEnter, onLeave } = useTransitions()

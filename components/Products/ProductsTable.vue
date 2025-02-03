@@ -77,13 +77,14 @@ const getCategoryColor = (category: string) => {
 
 // Transiciones y animaciones
 onMounted(() => {
-    gsap.from('.table-row', {
-        scale: 0.8,
-        opacity: 0,
-        stagger: 0.1,
-        duration: 1,
-        ease: "back.out(1.7)",
-    });
+  gsap.from(['table', '.table-row'], {
+    x: -50,
+    opacity: 0,
+    rotate: -3,
+    stagger: 0.1,
+    duration: 0.8,
+    ease: "power2.out",
+  });
 });
 
 const { onBeforeEnter, onEnter, onLeave } = useTransitions()
