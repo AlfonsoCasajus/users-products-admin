@@ -4,9 +4,9 @@
             <thead class="bg-[#2e3338c2] text-white">
             <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Nombre</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Usuario</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Email</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Acciones</th>
+                <th scope="col" class="hidden sm:table-cell px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Usuario</th>
+                <th scope="col" class="hidden md:table-cell px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Email</th>
+                <th scope="col" class="px-6 py-3 text-xs font-medium uppercase tracking-wider text-center">Acciones</th>
             </tr>
             </thead>
             <TransitionGroup
@@ -23,9 +23,9 @@
                     class="table-row hover:bg-[#30373d6e]"
                 >
                     <td class="px-6 py-4 whitespace-nowrap">{{ user.name }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ user.username }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ user.email }}</td>
-                    <td class="px-6 py-4">
+                    <td class="hidden sm:table-cell px-6 py-4 whitespace-nowrap">{{ user.username }}</td>
+                    <td class="hidden md:table-cell px-6 py-4 whitespace-nowrap">{{ user.email }}</td>
+                    <td class="px-6 py-4 flex items-center justify-center">
                         <v-btn :icon="IconDots" variant="tonal" size="small" rounded="xl">
                             <IconDots size="24" />
                             <v-menu activator="parent">

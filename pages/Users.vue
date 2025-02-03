@@ -2,7 +2,9 @@
     <div class="flex flex-col gap-4 items-center">
         <div v-if="!isLoadingUsers" class="w-full">
             <UsersTable  v-if="filteredUsers.length" :users="filteredUsers" @details="openUserDetails" @delete="openConfirmDialog"/>
-            <div v-else class="w-full text-center"> No hay Usuarios</div>
+            <div v-else class="w-full text-center">
+                No hay usuarios con ese nombre
+            </div>
         </div>
         <div v-else class="overflow-hidden">
             <v-progress-circular

@@ -2,7 +2,7 @@
     <div class="flex flex-col gap-4 items-center">
         <div  v-if="!isLoadingProducts" class="w-full">
             <ProductsTable v-if="filteredProducts.length" :products="filteredProducts" @details="openProductDetails" @delete="openConfirmDialog" />
-            <div v-else class="w-full text-center"> No hay Productos</div>
+            <div v-else class="w-full text-center"> No hay productos con ese nombre</div>
         </div>
         <div v-else class="overflow-hidden">
             <v-progress-circular

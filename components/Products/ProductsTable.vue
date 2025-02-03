@@ -3,10 +3,10 @@
         <table class="w-full">
             <thead class="bg-[#2e3338c2] text-white">
             <tr class="table-row">
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Nombre</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Categoria</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Precio</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Acciones</th>
+                <th scope="col" class="px-3 md:px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Nombre</th>
+                <th scope="col" class="hidden sm:table-cell px-3 md:px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Categoria</th>
+                <th scope="col" class="hidden md:table-cell px-3 md:px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Precio</th>
+                <th scope="col" class="px-3 md:px-6 py-3 text-center text-xs font-medium uppercase tracking-wider">Acciones</th>
             </tr>
             </thead>
             <TransitionGroup
@@ -22,16 +22,16 @@
                     :data-index="index"
                     class="table-row hover:bg-[#30373d6e]"
                 >
-                    <td class="px-6 py-4 whitespace-nowrap truncate max-w-[300px]">
+                    <td class="px-3 md:px-6 py-4 whitespace-nowrap truncate max-w-[125px] md:max-w-[300px]">
                         {{ product.title }}
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">
+                    <td class="hidden sm:table-cell px-3 md:px-6 py-4 whitespace-nowrap">
                         <v-chip :style="{ color: getCategoryColor(product.category) }" class="capitalize">
                            {{ product.category }}
                         </v-chip>
                     </td>
-                    <td class="px-6 py-4 whitespace-nowrap">$ {{ product.price }}</td>
-                    <td class="px-6 py-4">
+                    <td class="hidden md:table-cell px-3 md:px-6 py-4 whitespace-nowrap">$ {{ product.price }}</td>
+                    <td class="px-3 md:px-6 py-4 flex items-center justify-center">
                         <v-btn :icon="IconDots" variant="tonal" size="small" rounded="xl">
                             <IconDots size="24" />
                             <v-menu activator="parent">
