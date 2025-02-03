@@ -1,15 +1,15 @@
 <template>
-    <div class="overflow-hidden">
-        <table class="min-w-full">
+    <div>
+        <table>
             <thead class="bg-[#2e3338c2] text-white">
             <tr class="table-row">
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Name</th>
-                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Username</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Nombre</th>
+                <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Usuario</th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Email</th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Acciones</th>
             </tr>
             </thead>
-            <tbody class="bg-[#212529] text-[#f8f9fa]">
+            <tbody class="bg-dark-primary text-light-primary">
                 <tr v-for="(item, index) in users" :key="index" class="table-row hover:bg-[#30373d6e]">
                     <td class="px-6 py-4 whitespace-nowrap">{{ item.name }}</td>
                     <td class="px-6 py-4 whitespace-nowrap">{{ item.username }}</td>

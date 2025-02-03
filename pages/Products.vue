@@ -1,12 +1,13 @@
 <template>
     <div class="flex flex-col gap-4 items-center">
         <ProductsTable v-if="!isLoadingProducts" :products="filteredProducts" @details="openProductDetails" @delete="deleteProduct" />
-        <v-progress-circular
-            v-else
-            :size="75"
-            color="primary"
-            indeterminate
-        />
+        <div v-else class="overflow-hidden">
+            <v-progress-circular
+                :size="75"
+                color="primary"
+                indeterminate
+            />
+        </div>
 
         <div v-if="selectedProduct" class="pa-4 text-center" >
             <v-dialog
@@ -64,7 +65,6 @@ const productDetailsList = computed(() => {
         { icon: 'mdi-currency-usd', text: 'Precio', value: selectedProduct.value.price },
         { icon: 'mdi-information', text: 'Descripción', value: selectedProduct.value.description },
         { icon: 'mdi-tag', text: 'Categoría', value: selectedProduct.value.category },
-        { icon: 'mdi-image', text: 'Imagen', value: selectedProduct.value.image },
         { icon: 'mdi-star', text: 'Rating', value: selectedProduct.value.rating.rate },
         { icon: 'mdi-account', text: 'Count', value: selectedProduct.value.rating.count }
     ]

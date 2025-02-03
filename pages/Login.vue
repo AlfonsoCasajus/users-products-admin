@@ -1,9 +1,8 @@
 <template>
     <section class="h-full flex gap-5 bg-[#1A202C] p-12!">
         <div class="w-full flex flex-col gap-3 items-center justify-center">
-            <div class="max-w-md">
-                <NuxtImg src="logoDaptee.svg" alt="Daptee Logo" height="125px" format="webp" quality="80" />
-            </div>
+            
+            <NuxtImg src="logoDaptee.svg" alt="Daptee Logo" height="100" format="webp" quality="80" class="max-w-md" />
             
             <form @submit.prevent="login" class="text-light-primary w-full max-w-[500px] flex flex-col gap-3 p-6">
                 <v-text-field
