@@ -33,7 +33,7 @@
                                 <v-list-item value="details" @click="$emit('details', user)">
                                     <v-list-item-title class="flex items-center gap-2"><IconEye />Ver</v-list-item-title>
                                 </v-list-item>
-                                <v-list-item value="delete" @click="$emit('delete', user.id)">
+                                <v-list-item value="delete" @click="$emit('delete', user)">
                                     <v-list-item-title class="flex items-center gap-2"><IconTrash />Eliminar</v-list-item-title>
                                 </v-list-item>
                             </v-list>

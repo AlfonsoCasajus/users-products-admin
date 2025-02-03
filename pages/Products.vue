@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col gap-4 items-center">
         <div  v-if="!isLoadingProducts" class="w-full">
-            <ProductsTable v-if="filteredProducts.length" :products="filteredProducts" @details="openProductDetails" @delete="deleteProduct" />
+            <ProductsTable v-if="filteredProducts.length" :products="filteredProducts" @details="openProductDetails" @delete="openConfirmDialog" />
             <div v-else class="w-full text-center"> No hay Productos</div>
         </div>
         <div v-else class="overflow-hidden">
@@ -24,12 +24,34 @@
                 </template>
             </v-dialog>
         </div>
+        <v-dialog
+            scrollable
+            :model-value="confirmDialog"
+            max-width="350"
+            @afterLeave="closeConfirmDialog()"
+        >
+            <template v-slot:default="{ isActive }">
+                <v-card
+                    :prepend-icon="IconTrash"
+                    text="Estas seguro que quieres eliminar este producto? Esta accion es irreversible"
+                    title="Eliminar Producto"
+                >
+                    <template v-slot:actions>
+
+                        <v-btn @click="confirmProductRemoval" variant="tonal" color="#E80C15">
+                            Eliminar
+                        </v-btn>
+                    </template>
+                </v-card>
+            </template>
+        </v-dialog>
     </div>
 </template>
 
 <script setup lang="ts">
 import { useProducts } from '#imports';
 import type { Product } from '~/types/product';
+import { IconTrash } from '@tabler/icons-vue';
 
 // Fetch user data
 const { products, fetchProducts, isLoadingProducts, deleteProduct } = useProducts();
@@ -48,6 +70,24 @@ const filteredProducts = computed(() => {
     });
 });
 
+// Confirmacion de eliminacion de producto
+const confirmDialog = ref(false);
+
+const openConfirmDialog = (product: Product) => {
+    selectedProduct.value = product;
+    confirmDialog.value = true;
+};
+
+const closeConfirmDialog = () => {
+    confirmDialog.value = false;
+    selectedProduct.value = null;
+};
+
+const confirmProductRemoval = () => {
+    if (!selectedProduct.value) return;
+    deleteProduct(selectedProduct.value.id)
+    closeConfirmDialog();
+}
 
 // Detalles del producto
 const detailsDialog = ref(false);

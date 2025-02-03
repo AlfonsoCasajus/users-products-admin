@@ -1,7 +1,7 @@
 <template>
     <div class="flex flex-col gap-4 items-center">
         <div v-if="!isLoadingUsers" class="w-full">
-            <UsersTable  v-if="filteredUsers.length" :users="filteredUsers" @details="openUserDetails" @delete="deleteUser"/>
+            <UsersTable  v-if="filteredUsers.length" :users="filteredUsers" @details="openUserDetails" @delete="openConfirmDialog"/>
             <div v-else class="w-full text-center"> No hay Usuarios</div>
         </div>
         <div v-else class="overflow-hidden">
@@ -24,13 +24,34 @@
                 </template>
             </v-dialog>
         </div>
+        <v-dialog
+            scrollable
+            :model-value="confirmDialog"
+            max-width="350"
+            @afterLeave="closeConfirmDialog()"
+        >
+            <template v-slot:default="{ isActive }">
+                <v-card
+                    :prepend-icon="IconTrash"
+                    text="Estas seguro que quieres eliminar al usuario? Esta accion es irreversible"
+                    title="Eliminar usuario"
+                >
+                    <template v-slot:actions>
 
+                        <v-btn @click="confirmUserRemoval" variant="tonal" color="#E80C15">
+                            Eliminar
+                        </v-btn>
+                    </template>
+                </v-card>
+            </template>
+        </v-dialog>
     </div>
 </template>
 
 <script setup lang="ts">
 import { useUsers } from '~/composables/useUsers';
 import type { User } from '~/types/user';
+import { IconTrash } from '@tabler/icons-vue';
 
 // Fetch user data
 const { users, fetchUsers, deleteUser, isLoadingUsers } = useUsers();
@@ -49,6 +70,25 @@ const filteredUsers = computed(() => {
         return user.name.toLowerCase().includes(filterQuery.value.toLowerCase());
     });
 });
+
+// Confirmacion de eliminacion de usuario
+const confirmDialog = ref(false);
+
+const openConfirmDialog = (user: User) => {
+    selectedUser.value = user;
+    confirmDialog.value = true;
+};
+
+const closeConfirmDialog = () => {
+    confirmDialog.value = false;
+    selectedUser.value = null;
+};
+
+const confirmUserRemoval = () => {
+    if (!selectedUser.value) return;
+    deleteUser(selectedUser.value.id)
+    closeConfirmDialog();
+}
 
 // Detalles del usuario
 const detailsDialog = ref(false);
