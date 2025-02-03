@@ -6,7 +6,7 @@ export default defineNuxtRouteMiddleware((to, from) => {
  // Si no esta autenticado se lo envia al login
   if (!isAuthenticated && to.path !== '/login') {
     return navigateTo('/login');
-  } else if (isAuthenticated && to.path === '/' || to.path === '/login') {
+  } else if (isAuthenticated && (to.path === '/' ||  to.path === '/login')) {
     return navigateTo('/users');
   }
 });
