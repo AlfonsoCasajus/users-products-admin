@@ -35,8 +35,9 @@ onMounted(async () => {
     await fetchProducts()
 })
 
-// Filter users
-const filterQuery = ref('');
+// Filtrado de productos
+const filtersStore = useFiltersStore();
+const filterQuery = computed(() => filtersStore.query);
 
 const filteredProducts = computed(() => {
     return products.value.filter((product) => {

@@ -62,5 +62,9 @@ import { IconSettings, IconLogout, IconChevronDown, IconSearch } from '@tabler/i
 const auth = useAuth()
 
 // Filtrado
-const filterQuery = ref('')
+const filtersStore = useFiltersStore();
+const filterQuery = computed({
+  get: () => filtersStore.query,
+  set: (value) => filtersStore.setFilterQuery(value),
+});
 </script>

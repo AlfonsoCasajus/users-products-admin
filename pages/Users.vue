@@ -36,8 +36,9 @@ onMounted(async () => {
     await fetchUsers()
 })
 
-// Filter users
-const filterQuery = ref('');
+// Filtrado de usuarios
+const filtersStore = useFiltersStore();
+const filterQuery = computed(() => filtersStore.query);
 
 const filteredUsers = computed(() => {
     if (!users.value) return [];
