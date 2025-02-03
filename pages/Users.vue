@@ -1,6 +1,9 @@
 <template>
     <div class="flex flex-col gap-4 items-center">
-        <UsersTable v-if="!isLoadingUsers" :users="filteredUsers" @details="openUserDetails" @delete="deleteUser"/>
+        <div v-if="!isLoadingUsers" class="w-full">
+            <UsersTable  v-if="filteredUsers.length" :users="filteredUsers" @details="openUserDetails" @delete="deleteUser"/>
+            <div v-else class="w-full text-center"> No hay Usuarios</div>
+        </div>
         <div v-else class="overflow-hidden">
             <v-progress-circular
                 :size="75"

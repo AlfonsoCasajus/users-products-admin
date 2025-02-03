@@ -1,6 +1,9 @@
 <template>
     <div class="flex flex-col gap-4 items-center">
-        <ProductsTable v-if="!isLoadingProducts" :products="filteredProducts" @details="openProductDetails" @delete="deleteProduct" />
+        <div  v-if="!isLoadingProducts" class="w-full">
+            <ProductsTable v-if="filteredProducts.length" :products="filteredProducts" @details="openProductDetails" @delete="deleteProduct" />
+            <div v-else class="w-full text-center"> No hay Productos</div>
+        </div>
         <div v-else class="overflow-hidden">
             <v-progress-circular
                 :size="75"

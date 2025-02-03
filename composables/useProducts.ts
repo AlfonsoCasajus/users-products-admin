@@ -5,15 +5,17 @@ export const useProducts = () => {
     const isLoadingProducts = ref(false)
 
     const fetchProducts = async () => {
+      isLoadingProducts.value = true;
       try {
         const productsResponse = await $fetch('https://fakestoreapi.com/products')
-
+        
         const productsList = productsResponse as Product[];
-
+        
         products.value = productsList;
       } catch (error) {
         console.error('Error fetching products: ', error);
       }
+      isLoadingProducts.value = false;
     };
 
         // Eliminar un producto

@@ -9,8 +9,19 @@
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Acciones</th>
             </tr>
             </thead>
-            <tbody class="bg-dark-primary text-light-primary">
-                <tr v-for="(product, index) in products" :key="index" class="table-row hover:bg-[#30373d6e]">
+            <TransitionGroup
+                tag="tbody"
+                :css="false"
+                @before-enter="onBeforeEnter"
+                @enter="onEnter"
+                @leave="onLeave"
+                class="bg-dark-primary text-light-primary"
+            >
+                <tr v-for="(product, index) in products"
+                    :key="product.id"
+                    :data-index="index"
+                    class="table-row hover:bg-[#30373d6e]"
+                >
                     <td class="px-6 py-4 whitespace-nowrap truncate max-w-[300px]">
                         {{ product.title }}
                     </td>
@@ -36,7 +47,7 @@
                         </v-btn>
                     </td>
                 </tr>
-            </tbody>
+            </TransitionGroup>
         </table>
     </div>
 </template>
@@ -55,6 +66,16 @@ defineProps({
 
 defineEmits(['delete', 'details']);
 
+// Definir el color de las categorias
+const categoryColors = ['#4caf50', '#2196f3', '#8bc34a', '#795548', '#607d8b', '#ff9800', '#e91e63'];
+
+const getCategoryColor = (category: string) => {
+    const categoryLength = category.length;
+
+    return categoryColors[categoryLength % categoryColors.length];
+};
+
+// Transiciones y animaciones
 onMounted(() => {
     gsap.from('.table-row', {
         scale: 0.8,
@@ -65,13 +86,6 @@ onMounted(() => {
     });
 });
 
-const categoryColors = ['#4caf50', '#2196f3', '#8bc34a', '#795548', '#607d8b', '#ff9800', '#e91e63'];
-
-const getCategoryColor = (category: string) => {
-    const categoryLength = category.length;
-    
-
-    return categoryColors[categoryLength % categoryColors.length];
-};
+const { onBeforeEnter, onEnter, onLeave } = useTransitions()
 
 </script>

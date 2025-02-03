@@ -1,28 +1,39 @@
 <template>
-    <div>
-        <table>
+    <div class="overflow-hidden w-full">
+        <table  class="w-full">
             <thead class="bg-[#2e3338c2] text-white">
-            <tr class="table-row">
+            <tr>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Nombre</th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Usuario</th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Email</th>
                 <th scope="col" class="px-6 py-3 text-left text-xs font-medium uppercase tracking-wider">Acciones</th>
             </tr>
             </thead>
-            <tbody class="bg-dark-primary text-light-primary">
-                <tr v-for="(item, index) in users" :key="index" class="table-row hover:bg-[#30373d6e]">
-                    <td class="px-6 py-4 whitespace-nowrap">{{ item.name }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ item.username }}</td>
-                    <td class="px-6 py-4 whitespace-nowrap">{{ item.email }}</td>
+            <TransitionGroup
+                tag="tbody"
+                 :css="false"
+                 @before-enter="onBeforeEnter"
+                 @enter="onEnter"
+                 @leave="onLeave"
+                 class="bg-dark-primary text-light-primary"
+            >
+                <tr v-for="(user, index) in users"
+                    :key="user.id"
+                    :data-index="index"
+                    class="table-row hover:bg-[#30373d6e]"
+                >
+                    <td class="px-6 py-4 whitespace-nowrap">{{ user.name }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ user.username }}</td>
+                    <td class="px-6 py-4 whitespace-nowrap">{{ user.email }}</td>
                     <td class="px-6 py-4">
                         <v-btn :icon="IconDots" variant="tonal" size="small" rounded="xl">
                             <IconDots size="24" />
                             <v-menu activator="parent">
                             <v-list>
-                                <v-list-item value="details" @click="$emit('details', item)">
+                                <v-list-item value="details" @click="$emit('details', user)">
                                     <v-list-item-title class="flex items-center gap-2"><IconEye />Ver</v-list-item-title>
                                 </v-list-item>
-                                <v-list-item value="delete" @click="$emit('delete', item.id)">
+                                <v-list-item value="delete" @click="$emit('delete', user.id)">
                                     <v-list-item-title class="flex items-center gap-2"><IconTrash />Eliminar</v-list-item-title>
                                 </v-list-item>
                             </v-list>
@@ -30,7 +41,7 @@
                         </v-btn>
                     </td>
                 </tr>
-            </tbody>
+            </TransitionGroup>
         </table>
     </div>
 </template>
@@ -49,14 +60,17 @@ defineProps({
 
 defineEmits(['delete', 'details']);
 
+// Transitions and animations
 onMounted(() => {
     gsap.from('.table-row', {
+        scale: 0.8,
         opacity: 0,
-        y: 10,
         stagger: 0.1,
         duration: 1,
-        ease: "ease-in-out",
+        ease: "back.out(1.7)",
     });
 });
+
+const { onBeforeEnter, onEnter, onLeave } = useTransitions()
 
 </script>
