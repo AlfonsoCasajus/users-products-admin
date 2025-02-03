@@ -1,12 +1,13 @@
 <template>
     <div class="flex flex-col gap-4 items-center">
         <UsersTable v-if="!isLoadingUsers" :users="filteredUsers" @details="openUserDetails" @delete="deleteUser"/>
-        <v-progress-circular
-            v-else
-            :size="75"
-            color="primary"
-            indeterminate
-        />
+        <div v-else class="overflow-hidden">
+            <v-progress-circular
+                :size="75"
+                color="primary"
+                indeterminate
+            />
+        </div>
 
         <div v-if="selectedUser" class="pa-4 text-center" >
             <v-dialog

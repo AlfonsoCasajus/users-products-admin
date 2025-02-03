@@ -1,22 +1,22 @@
 <template>
-    <div class="flex justify-evenly min-h-screen bg-[#212529] text-[#f8f9fa]">
-        <div class="flex flex-col items-center justify-center gap-4">
+    <div class="flex justify-evenly h-screen bg-dark-primary text-light-primary">
+        <div class="w-full max-w-[400px] flex flex-col items-center justify-center gap-4">
             <NuxtImg src="logoDaptee.svg" alt="Logo" height="100" format="webp" quality="80" />
-            <div class="w-full kaka">
+            <div class="w-full">
                 <v-btn to="/users" type="submit" variant="outlined" color="info" rounded="xl" size="large" width="100%">
                     Usuarios
                 </v-btn>
             </div>
-            <div class="w-full kaka">
+            <div class="w-full">
                 <v-btn to="/products" variant="outlined" color="info" rounded="xl" size="large" width="100%">
                     Productos
                 </v-btn>
             </div>
         </div>
-        <div class="flex flex-col items-center justify-center gap-6 w-full max-w-[700px]">
+        <div class="w-full max-w-[800px] flex flex-col items-center gap-6 pt-6! pb-6">
             <div class="flex items-center gap-3">
                 <v-avatar image="public/dapteeHead.png" size="64" />
-                <span class="text-[#f8f9fa] text-2xl">Daptee</span>
+                <span class="text-light-primary text-2xl">Daptee</span>
                 <v-btn variant="text" :icon="IconChevronDown" size="x-small" rounded="xl">
                     <IconChevronDown size="24" />
                     <v-menu activator="parent">
@@ -48,7 +48,7 @@
                     placeholder="Ej: Daptee"
                 />
             </div>
-            <section>
+            <section class="overflow-auto h-full w-full">
                 <slot />
             </section>
         </div>
