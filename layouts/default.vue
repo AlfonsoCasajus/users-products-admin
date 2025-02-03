@@ -1,5 +1,5 @@
 <template>
-    <div class="flex flex-col items-center lg:flex-row justify-evenly min-h-screen lg:h-screen bg-dark-primary text-light-primary">
+    <div class="flex flex-col items-center lg:flex-row justify-evenly min-h-screen lg:h-screen bg-dark-primary text-light-primary p-6!">
         <div class="w-full self-center max-w-[400px] flex flex-col items-center justify-center gap-4">
             <NuxtImg src="logoDaptee.svg" alt="Logo" height="100" format="webp" quality="80" />
             <div class="w-full">
@@ -25,7 +25,7 @@
                 </v-btn>
             </div>
         </div>
-        <div class="w-full h-full max-w-[800px] flex flex-col items-center gap-6 p-6!">
+        <div class="w-full h-full max-w-[800px] flex flex-col items-center gap-6">
             <div class="flex items-center gap-3">
                 <v-avatar image="public/dapteeHead.png" size="64" />
                 <span class="text-light-primary text-2xl">Daptee</span>
