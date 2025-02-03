@@ -3,12 +3,24 @@
         <div class="w-full max-w-[400px] flex flex-col items-center justify-center gap-4">
             <NuxtImg src="logoDaptee.svg" alt="Logo" height="100" format="webp" quality="80" />
             <div class="w-full">
-                <v-btn to="/users" type="submit" variant="outlined" color="info" rounded="xl" size="large" width="100%">
+                <v-btn to="/users" type="submit"
+                    :variant="$route.path === '/users' ? 'elevated' : 'outlined'"
+                    color="info"
+                    rounded="xl"
+                    size="large"
+                    width="100%"
+                >
                     Usuarios
                 </v-btn>
             </div>
             <div class="w-full">
-                <v-btn to="/products" variant="outlined" color="info" rounded="xl" size="large" width="100%">
+                <v-btn to="/products"
+                    :variant="$route.path === '/products' ? 'elevated' : 'outlined'"
+                    color="info"
+                    rounded="xl"
+                    size="large"
+                    width="100%"
+                >
                     Productos
                 </v-btn>
             </div>
