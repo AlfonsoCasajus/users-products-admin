@@ -27,7 +27,6 @@ export default defineNuxtConfig({
       tailwindcss(),
     ],
   },
-
   modules: [
     '@pinia/nuxt',
     '@nuxt/image',
@@ -36,6 +35,12 @@ export default defineNuxtConfig({
         // @ts-expect-error
         config.plugins.push(vuetify({ autoImport: true }))
       })
-    }
-  ]
+    },
+    'nuxt-snackbar'
+  ],
+  snackbar: {
+    top: true,
+    right: true,
+    duration: 5000
+  }
 })

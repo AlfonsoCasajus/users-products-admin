@@ -1,6 +1,7 @@
 import type { Product } from "~/types/product";
 
 export const useProducts = () => {
+    const snackbar = useSnackbar();
     const products = ref<Product[]>([]);
     const isLoadingProducts = ref(false)
 
@@ -8,12 +9,20 @@ export const useProducts = () => {
       isLoadingProducts.value = true;
       try {
         const productsResponse = await $fetch('https://fakestoreapi.com/products')
+
+        if (!productsResponse) throw Error('Error al buscar los productos')
         
         const productsList = productsResponse as Product[];
         
         products.value = productsList;
       } catch (error) {
         console.error('Error fetching products: ', error);
+        snackbar.add({
+          type: 'error',
+          dismissible: true,
+          title: 'Ups algo fallo!',
+          text: `Vuelve a intentarlo mas tarde`
+        })
       }
       isLoadingProducts.value = false;
     };

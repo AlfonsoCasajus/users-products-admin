@@ -7,6 +7,7 @@
             <form @submit.prevent="login" class="text-light-primary w-full max-w-[500px] flex flex-col gap-3 p-6">
                 <v-text-field
                     v-model="username"
+                    :rules="[value => !!value || 'Requerido.']"
                     clearable
                     label="Usuario"
                     placeholder="Ej: Daptee"
@@ -15,6 +16,7 @@
                 />
                 <v-text-field
                     v-model="password"
+                    :rules="[value => !!value || 'Requerido.']"
                     :append-inner-icon="isPasswordVisible ? IconEye : IconEyeClosed"
                     :prepend-icon="IconLock"
                     :type="isPasswordVisible ? 'text' : 'password'"
@@ -22,7 +24,7 @@
                     label="Contraseña"
                     @click:append-inner="isPasswordVisible = !isPasswordVisible"
                 />
-                <v-btn type="submit" variant="tonal" color="info" rounded="xl">
+                <v-btn :disabled="!username || !password" type="submit" variant="tonal" color="info" rounded="xl">
                     Ingresar
                 </v-btn>
             </form>

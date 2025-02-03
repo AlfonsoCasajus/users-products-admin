@@ -52,7 +52,6 @@
     </div>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue';
 import { IconDots, IconTrash, IconEye } from '@tabler/icons-vue';
 import type { Product } from '~/types/product';
 import { gsap } from "gsap";

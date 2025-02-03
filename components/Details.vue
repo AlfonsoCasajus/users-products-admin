@@ -24,7 +24,6 @@
     </v-card>
 </template>
 <script lang="ts" setup>
-import { defineProps } from 'vue';
 import { IconUser } from '@tabler/icons-vue';
 
 interface Detail {
