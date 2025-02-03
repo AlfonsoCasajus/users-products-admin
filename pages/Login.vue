@@ -1,9 +1,11 @@
 <template>
     <section class="h-full flex gap-5 bg-[#1A202C] p-12!">
         <div class="w-full flex flex-col gap-3 items-center justify-center">
-            <NuxtImg src="logoDaptee.svg" alt="Logo" height="100" format="webp" quality="80" />
+            <div class="max-w-md">
+                <NuxtImg src="logoDaptee.svg" alt="Daptee Logo" height="125px" format="webp" quality="80" />
+            </div>
             
-            <form @submit.prevent="login" class="text-[#f8f9fa] w-full max-w-[500px] flex flex-col gap-3 p-6">
+            <form @submit.prevent="login" class="text-light-primary w-full max-w-[500px] flex flex-col gap-3 p-6">
                 <v-text-field
                     v-model="username"
                     clearable
